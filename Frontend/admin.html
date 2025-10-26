@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueueUp Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div id="app" class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow">
+            <nav class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold">⚙️</span>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">QueueUp Admin</h1>
+                </div>
+                <div id="connectionStatus" class="flex items-center gap-2">
+                    <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                    <span class="text-xs text-gray-600">Connecting...</span>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 py-8">
+            <!-- Tabs -->
+            <div class="flex gap-4 mb-6 border-b">
+                <button onclick="switchTab('dashboard')" class="px-4 py-2 border-b-2 border-blue-600 text-blue-600 font-semibold">
+                    📊 Dashboard
+                </button>
+                <button onclick="switchTab('analytics')" class="px-4 py-2 text-gray-600 font-semibold hover:text-gray-800">
+                    📈 Analytics
+                </button>
+                <button onclick="switchTab('management')" class="px-4 py-2 text-gray-600 font-semibold hover:text-gray-800">
+                    ⚙️ Management
+                </button>
+            </div>
+
+            <!-- Dashboard Tab -->
+            <div id="dashboard-tab" class="space-y-6">
+                <h2 class="text-2xl font-bold text-gray-800">Real-time Overview</h2>
+                
+                <!-- Service Cards -->
+                <div id="dashboardGrid" class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow p-6 animate-pulse">
+                        <div class="h-24 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div id="analytics-tab" class="hidden space-y-6">
+                <h2 class="text-2xl font-bold text-gray-800">Analytics</h2>
+                
+                <div id="analyticsGrid" class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <canvas id="waitTimeChart"></canvas>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <canvas id="queueLengthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Management Tab -->
+<div id="management-tab" class="hidden space-y-6">
+    <h2 class="text-2xl font-bold text-gray-800">Queue Management</h2>
+    <div id="managementGrid" class="space-y-4">
+      <div class="bg-white rounded-lg shadow p-6 text-center text-gray-500">
+        Select a service from Dashboard to view details
+      </div>
+    </div>
+  </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

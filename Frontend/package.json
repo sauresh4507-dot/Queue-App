@@ -1,0 +1,13 @@
+{
+  "name": "queueup-frontend",
+  "version": "1.0.0",
+  "description": "QueueUp Frontend",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 5173"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "socket.io-client": "^4.8.1"
+  }
+}
